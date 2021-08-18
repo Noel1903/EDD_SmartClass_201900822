@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1629228144 source:d:\usac 2021\edd\lab\fase1\main.cpp
+	<iostream>
+	<string>
+	<fstream>
+	<cstring>
+	<regex>
+	"ListStudents.h"
+	"ListaErrores.h"
+
+1628779544 d:\usac 2021\edd\lab\fase1\liststudents.h
+	<iostream>
+	"NodoEstudiantes.h"
+
+1628725056 d:\usac 2021\edd\lab\fase1\nodoestudiantes.h
+	<iostream>
+	<string>
+
+1628725322 source:d:\usac 2021\edd\lab\fase1\nodoestudiantes.cpp
+	"NodoEstudiantes.h"
+
+1629225790 source:d:\usac 2021\edd\lab\fase1\liststudents.cpp
+	<iostream>
+	"ListStudents.h"
+
+1629217112 source:d:\usac 2021\edd\lab\fase1\nodoerrores.cpp
+	"NodoErrores.h"
+
+1629217122 d:\usac 2021\edd\lab\fase1\nodoerrores.h
+	<iostream>
+
+1629226764 source:d:\usac 2021\edd\lab\fase1\listaerrores.cpp
+	"ListaErrores.h"
+
+1629229094 d:\usac 2021\edd\lab\fase1\listaerrores.h
+	"NodoErrores.h"
+
+1629216116 source:d:\usac 2021\edd\lab\fase1\nodotareas.cpp
+	"NodoTareas.h"
+
+1629215994 d:\usac 2021\edd\lab\fase1\nodotareas.h
+	<iostream>
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Fase1" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Fase1" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Fase1" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="ListStudents.cpp" />
+		<Unit filename="ListStudents.h" />
+		<Unit filename="ListaErrores.cpp" />
+		<Unit filename="ListaErrores.h" />
+		<Unit filename="ListaTareas.cpp" />
+		<Unit filename="ListaTareas.h" />
+		<Unit filename="NodoErrores.cpp" />
+		<Unit filename="NodoErrores.h" />
+		<Unit filename="NodoEstudiantes.cpp" />
+		<Unit filename="NodoEstudiantes.h" />
+		<Unit filename="NodoLD.cpp" />
+		<Unit filename="NodoLD.h" />
+		<Unit filename="NodoTareas.cpp" />
+		<Unit filename="NodoTareas.h" />
+		<Unit filename="main.cpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
