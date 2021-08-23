@@ -14,4 +14,8 @@ class Lista{
         int eliminar(string);
         void mostar();
         void mostarInverso();
+        int carnet(string);
+        void corregir(string);
+        void graficar();
+        string reporte();
 };

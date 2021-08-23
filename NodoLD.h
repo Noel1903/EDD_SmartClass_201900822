@@ -1,8 +1,10 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class NodoLD{
 private:
+    int id;
     string carnet;
     string nombreTarea;
     string descripcion;
@@ -10,12 +12,12 @@ private:
     string fecha;
     string hora;
     string estado;
-    int id;
 public:
     NodoLD *next;
     NodoLD *previous;
     NodoLD();
-    NodoLD(string,string,string,string,string,string,string);
+    NodoLD(int,string,string,string,string,string,string,string);
+    int getId();
     string getCarnet();
     string getTarea();
     string getDescripcion();
@@ -23,7 +25,7 @@ public:
     string getFecha();
     string getHora();
     string getEstado();
-    int getId();
+    void setId(int);
     void setCarnet(string);
     void setTarea(string);
     void setDescripcion(string);
@@ -31,5 +33,4 @@ public:
     void setFecha(string);
     void setHora(string);
     void setEstado(string);
-    void setId(int);
 };

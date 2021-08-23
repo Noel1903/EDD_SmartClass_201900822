@@ -1,0 +1,15 @@
+digraph G{ 
+rankdir=LR 
+  node[shape=box]
+ edge[dir=both];
+ 1[label="Carnet:201901425\nNombre:Tarea de Matematica\nDescripcion:Realizar la tarea del curso de matemática intermedia 1.\nMateria:Matemática Intermedia 1\nFecha:2021/07/01\nHora:8:00\nEstado:Incumplido"]
+2[label="Carnet:202000786\nNombre:Tarea de Fisica\nDescripcion:Realizar la tarea del curso de Física 1.\nMateria:Física 1\nFecha:2021/07/01\nHora:11:00\nEstado:Pendiente"]
+3[label="Carnet:201704186\nNombre:Tarea de Estadística\nDescripcion:Realizar la tarea del curso de Estadística 1.\nMateria:Estadística 1\nFecha:2021/07/14\nHora:10:00\nEstado:Cumplido"]
+4[label="Carnet:201700886\nNombre:Codificar en C++\nDescripcion:Realizar la tarea del curso de Estructuras de datos\nMateria:Estructuras de Datos\nFecha:2021/07/14\nHora:16:00\nEstado:Pendiente"]
+5[label="Carnet:201900822\nNombre:Proyecto EDD\nDescripcion:Realizar Proyecto EDD\nMateria:EDD\nFecha:2021/08/12\nHora:13:00\nEstado:Incumplido"]
+6[label="Carnet:201901425\nNombre:Tarea de Lógica\nDescripcion:Realizar el resumen del curso de Lógica.\nMateria:Lógica\nFecha:2021/10/04\nHora:9:00\nEstado:Pendiente"]
+7[label="Carnet:201704186\nNombre:Tarea 2 de Física 3\nDescripcion:Realizar la tarea del curso de Física 3.\nMateria:FÍsica 3\nFecha:2021/10/04\nHora:11:00\nEstado:Pendiente"]
+8[label="Carnet:201700886\nNombre:Proyecto de Lenguajes\nDescripcion:Realizar el proyecto del curso de Lenguajes\nMateria:Lenguajes Formales y de Programación\nFecha:2021/10/21\nHora:13:00\nEstado:Pendiente"]
+1->2->3->4->5->6->7->8;
+   
+ }

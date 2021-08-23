@@ -1,14 +1,17 @@
 # depslib dependency file v1.0
-1629228144 source:d:\usac 2021\edd\lab\fase1\main.cpp
+1629746610 source:d:\usac 2021\edd\lab\fase1\main.cpp
 	<iostream>
 	<string>
 	<fstream>
 	<cstring>
+	<cstdlib>
 	<regex>
 	"ListStudents.h"
 	"ListaErrores.h"
+	"NodoTareas.h"
+	"ListaTareas.h"
 
-1628779544 d:\usac 2021\edd\lab\fase1\liststudents.h
+1629676196 d:\usac 2021\edd\lab\fase1\liststudents.h
 	<iostream>
 	"NodoEstudiantes.h"
 
@@ -19,8 +22,9 @@
 1628725322 source:d:\usac 2021\edd\lab\fase1\nodoestudiantes.cpp
 	"NodoEstudiantes.h"
 
-1629225790 source:d:\usac 2021\edd\lab\fase1\liststudents.cpp
+1629679048 source:d:\usac 2021\edd\lab\fase1\liststudents.cpp
 	<iostream>
+	<fstream>
 	"ListStudents.h"
 
 1629217112 source:d:\usac 2021\edd\lab\fase1\nodoerrores.cpp
@@ -29,10 +33,12 @@
 1629217122 d:\usac 2021\edd\lab\fase1\nodoerrores.h
 	<iostream>
 
-1629226764 source:d:\usac 2021\edd\lab\fase1\listaerrores.cpp
+1629745750 source:d:\usac 2021\edd\lab\fase1\listaerrores.cpp
 	"ListaErrores.h"
+	<iostream>
+	<fstream>
 
-1629229094 d:\usac 2021\edd\lab\fase1\listaerrores.h
+1629576904 d:\usac 2021\edd\lab\fase1\listaerrores.h
 	"NodoErrores.h"
 
 1629216116 source:d:\usac 2021\edd\lab\fase1\nodotareas.cpp
@@ -40,4 +46,19 @@
 
 1629215994 d:\usac 2021\edd\lab\fase1\nodotareas.h
 	<iostream>
+
+1629344116 source:d:\usac 2021\edd\lab\fase1\nodold.cpp
+	"NodoLD.h"
+
+1629348076 d:\usac 2021\edd\lab\fase1\nodold.h
+	<iostream>
+	<string>
+
+1629745974 source:d:\usac 2021\edd\lab\fase1\listatareas.cpp
+	"ListaTareas.h"
+	<iostream>
+	<fstream>
+
+1629678216 d:\usac 2021\edd\lab\fase1\listatareas.h
+	"NodoLD.h"
 

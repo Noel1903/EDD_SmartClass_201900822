@@ -1,0 +1,17 @@
+digraph G{ 
+rankdir=LR 
+  node[shape=box]
+ edge[dir=both];
+ 1[label="Carnet:20170886\nDPI:3502451230508\nNombre:Emilia Miramontes\nCorreo:nicols36@hotmail.com\nCarrera:Ingeniería en Ciencias y Sistemas\nCreditos:205"]
+2[label="Carnet:201501786\nDPI:7249529279753\nNombre:Juan Curiel\nCorreo:jernimo.caballero@yahoo.com\nCarrera:Ingeniería Industrial\nCreditos:245"]
+3[label="Carnet:201822186\nDPI:9298434863898\nNombre:Eloisa Rincón\nCorreo:carolinaelizondo85@yahoo.com\nCarrera:Ingeniería Civil\nCreditos:95"]
+4[label="Carnet:201901425\nDPI:4131766125532\nNombre:Bernardo Hinojosa\nCorreo:alfonso03@hotmail.com\nCarrera:Ingeniería Mecánica\nCreditos:100"]
+5[label="Carnet:201503186\nDPI:8549191766348\nNombre:Manuel Manzanares\nCorreo:benitoarmas92@gmail.com\nCarrera:Ingeniería Eléctrica\nCreditos:226"]
+6[label="Carnet:201123146\nDPI:9616636196552\nNombre:Julia Corona\nCorreo:ngela.solorio86@yahoo.com\nCarrera:Ingeniería Electrónica\nCreditos:237"]
+7[label="Carnet:201704186\nDPI:4778315315575\nNombre:Berta Carrasco\nCorreo:carmen.montenegro@yahoo.com\nCarrera:Ingeniería Ambiental\nCreditos:210"]
+8[label="Carnet:202000786\nDPI:7382344774121\nNombre:Lola Delapaz\nCorreo:adriana56@gmail.com\nCarrera:Ingeniería Química\nCreditos:45"]
+9[label="Carnet:201611446\nDPI:2511893949443\nNombre:Sonia Arteaga\nCorreo:esperanza.meza41@hotmail.com\nCarrera:Ingeniería Mecánica Industrial\nCreditos:195"]
+10[label="Carnet:201900822\nDPI:3003939460101\nNombre:Noel Chacon\nCorreo:osmar19lemus@gmail.com\nCarrera:Ingenieria en Ciencias y Sistemas\nCreditos:100"]
+1->2->3->4->5->6->7->8->9->10;
+10->1   
+ }
