@@ -1,0 +1,81 @@
+digraph G{node[shape="rectangle"] 0[label="201822186
+9298434863898
+Eloisa Rincón
+Ingenieria Civil
+epalleske9@gmail.org
+toqelijanu
+95
+19
+"]0->1
+1[label="201600822
+3003939460101
+Noel
+Ciencias y Sistemas
+osmar19lemus@gmail.com
+123Noel
+100
+22
+"]1->2
+2[label="201501786
+7249529279753
+Juan Curiel
+Ingenieria Industrial
+obrunelleschid@hotmail.com
+zanolexima
+245
+24
+"]1->4
+4[label="201700822
+3003939460101
+Noel
+Ciencias y Sistemas
+osmar19lemus@gmail.com
+123Noel
+100
+22
+"]0->5
+5[label="201901425
+3502451230508
+Emilia Miramontes
+Ingenieria en Ciencias y Sistemas
+abrahamz@outlook.com
+roxodiciqi
+205
+21
+"]5->6
+6[label="201900822
+3003939460101
+Noel Chacón
+Ingenieria en Sistemas
+osmar19lemus@gmail.com
+123N
+97
+21
+"]5->8
+8[label="202100822
+3003939460101
+Noel
+Ciencias y Sistemas
+osmar19lemus@gmail.com
+123Noel
+100
+22
+"]8->9
+9[label="202075186
+4294414662090
+Ermegildo Sagastume
+Ingenieria Quimica
+ermeSag09@outlook.com
+altoquemirey
+120
+24
+"]8->11
+11[label="202200822
+3003939460101
+Noel
+Ciencias y Sistemas
+osmar19lemus@gmail.com
+123Noel
+100
+22
+"] }

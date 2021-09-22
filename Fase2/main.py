@@ -1,4 +1,4 @@
-from listaAños import ListaAños
+"""from listaAños import ListaAños
 from listaSemetres import ListaSemestres
 from listaMeses import ListaMeses
 from encabezadoMatriz import ListaDatos
@@ -43,8 +43,12 @@ matriz.mostrarDia()
 print("---------")
 matriz.mostrarHora()
 
-arbol.insertar(2,2020)
-arbol.insertar(5,2019)
-arbol.insertar(4,2021)
-arbol.insertar(4,2020)
-arbol.mostrar()
+arbol.insertar(5,2020)
+arbol.insertar(2,2019)
+arbol.insertar(1,2021)
+arbol.mostrar()"""
+"""dicc={}
+dicc['Edad']=21
+dicc['Nombre']="Noel"
+print(dicc)"""
+
