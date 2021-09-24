@@ -1,0 +1,47 @@
+digraph G{
+Mat[label="Matriz" group=1]
+H08[label="Hora:08" group=1]
+H09[label="Hora:09" group=1]
+H10[label="Hora:10" group=1]
+H14[label="Hora:14" group=1]
+H08->H09
+H09->H08
+H09->H10
+H10->H09
+H10->H14
+H14->H10
+D01[label="Dia:01" group=01]
+D03[label="Dia:03" group=03]
+D14[label="Dia:14" group=14]
+D26[label="Dia:26" group=26]
+D01->D03
+D03->D01
+D03->D14
+D14->D03
+D14->D26
+D26->D14
+{rank = same;Mat;D01; D03; D14; D26; }
+Mat->D01
+Mat->H08
+0114[label="Tareas" group=01]
+D01->0114
+{rank=same;0114;H14;}{rank=same;0114;H14;}
+0309[label="Tareas" group=03]
+D03->0309
+{rank=same;0309;H09;}{rank=same;0309;H09;}
+1408[label="Tareas" group=14]
+D14->1408
+1408->1410
+1410->1408
+{rank=same;1408;H08;}1410[label="Tareas" group=14]
+{rank=same;1410;H10;}{rank=same;1408;H08;}
+2608[label="Tareas" group=26]
+D26->2608
+{rank=same;2608;H08;}{rank=same;2608;H08;}
+H08->1408
+1408->2608
+2608->1408
+H09->0309
+H10->1410
+H14->0114
+ }

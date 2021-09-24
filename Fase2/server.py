@@ -23,9 +23,8 @@ def cargaMasiva():
             mes=fecha[1]
             dia=fecha[0]
             hora=data["Hora"].split(":")
-            #carnet,año,mes,dia,hora,nombre,descripcion,materia,fecha,horaT,estado
             datos.insertarAño(data["Carnet"],año,mes,dia,hora[0],data["Nombre"],data["Descripcion"],data["Materia"],data["Fecha"],data["Hora"],data["Estado"])
-        datos.mostrarA()       
+        #datos.mostrarA()       
     return tipo
 
 
@@ -39,14 +38,28 @@ def Reportes():
     elif tipo==1:
         carnet=data["carnet"]
         año=data["año"]
-        mes=data["mes"]
+        mes=str(data["mes"])
+        if len(mes)==1:
+            Mes="0"+mes
+        else:
+            Mes=mes
+        datos.graficaM(carnet,año,Mes)
         return "Matriz de Tareas"
     elif tipo==2:
         carnet=data["carnet"]
         año=data["año"]
-        mes=data["mes"]
-        dia=data["dia"]
+        mes=str(data["mes"])
+        dia=str(data["dia"])
         hora=data["hora"]
+        if len(mes)==1:
+            Mes="0"+mes
+        else:
+            Mes=mes
+        if len(dia)==1:
+            Dia="0"+dia
+        else:
+            Dia=dia
+        datos.graficaLT(carnet,año,Mes,Dia,str(hora))
         return "Lista tareas"
     elif tipo==3:
         return "Arbol general de cursos"
@@ -89,6 +102,60 @@ def estudiante():
         carnet=data["carnet"]
         return "Eliminar usuario"
 
-        
+@app.route('/recordatorios',methods=['POST','PUT','DELETE','GET'])
+def recordatorio():
+    data=request.get_json()
+    if request.method=="POST":
+        fecha=data["Fecha"].split("/")
+        año=fecha[2]
+        mes=fecha[1]
+        dia=fecha[0]
+        hora=data["Hora"].split(":")
+        datos.insertarAño(data["Carnet"],año,mes,dia,hora[0],data["Nombre"],data["Descripcion"],data["Materia"],data["Fecha"],data["Hora"],data["Estado"])
+        return "Tarea creada correctamente"
+    elif request.method=="PUT":
+        carnet=data["Carnet"]
+        nombre=data["Nombre"]
+        descripcion=data["Descripcion"]
+        materia=data["Materia"]
+        fecha=data["Fecha"]
+        hora=data["Hora"]
+        estado=data["Estado"]
+        posicion=data["Posicion"]
+        datoFecha=data["Fecha"].split("/")
+        año=datoFecha[2]
+        mes=datoFecha[1]
+        dia=datoFecha[0]
+        datoHora=data["Hora"].split(":")
+        horaT=datoHora[0]
+        datos.modificarTarea(carnet,nombre,descripcion,materia,fecha,hora,estado,posicion,año,mes,dia,horaT)
+        return "Modificar tarea"
+    elif request.method=="GET":
+        carnet=data["Carnet"]
+        fecha=data["Fecha"]
+        hora=data["Hora"]
+        posicion=data["Posicion"]
+        datoFecha=data["Fecha"].split("/")
+        año=datoFecha[2]
+        mes=datoFecha[1]
+        dia=datoFecha[0]
+        datoHora=data["Hora"].split(":")
+        horaT=datoHora[0]
+        mensaje=datos.verTarea(carnet,posicion,año,mes,dia,horaT)
+        return mensaje
+    elif request.method=="DELETE":
+        carnet=data["Carnet"]
+        fecha=data["Fecha"]
+        hora=data["Hora"]
+        posicion=data["Posicion"]
+        datoFecha=data["Fecha"].split("/")
+        año=datoFecha[2]
+        mes=datoFecha[1]
+        dia=datoFecha[0]
+        datoHora=data["Hora"].split(":")
+        horaT=datoHora[0]
+        datos.eliminarT(carnet,posicion,año,mes,dia,horaT)
+        return "Eliminar Tarea"
+
 if __name__=="__main__":
-    app.run(port=3000,debug=True)
+    app.run(port=3000,debug=True,host='0.0.0.0')

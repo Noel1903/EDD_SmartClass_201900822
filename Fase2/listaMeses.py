@@ -1,4 +1,3 @@
-from typing import List
 from listaMatriz import Matriz
 class Nodo:
     def __init__(self,mes):
@@ -30,6 +29,56 @@ class ListaMeses:
                 nuevo.previous=self.body
                 self.body=nuevo
                 nuevo.tareas.insertar(dia,hora,carnet,nombre,descripcion,materia,fecha,horaT,estado)
+
+    def modificarT(self,nombre,descripcion,materia,fecha,hora,estado,posicion,mes,dia,horaT):
+        nodo=self.head
+        while(nodo):
+            if nodo.mes==mes:
+                nodo.tareas.modificarT(nombre,descripcion,materia,fecha,hora,estado,posicion,dia,horaT)
+                return
+            nodo=nodo.next
+        if nodo==None:
+            return "No existe el mes"
+
+    def eliminarT(self,posicion,mes,dia,horaT):
+        nodo=self.head
+        while(nodo):
+            if nodo.mes==mes:
+                nodo.tareas.eliminarT(posicion,dia,horaT)
+                return
+            nodo=nodo.next
+        if nodo==None:
+            return "No existe el mes"
+
+    def verTarea(self,posicion,mes,dia,horaT):
+        nodo=self.head
+        while(nodo):
+            if nodo.mes==mes:
+                mensaje=nodo.tareas.verTarea(posicion,dia,horaT)
+                return mensaje
+            nodo=nodo.next
+        if nodo==None:
+            return "No existe el mes"
+
+    def graficaLT(self,mes,dia,hora):
+        nodo=self.head
+        while(nodo):
+            if nodo.mes==mes:
+                nodo.tareas.graficaLT(dia,hora)
+                return
+            nodo=nodo.next
+        if nodo==None:
+            print( "No existe el mes")
+
+    def graficaM(self,mes):
+        nodo=self.head
+        while(nodo):
+            if nodo.mes==mes:
+                nodo.tareas.graficarMatriz()
+                return
+            nodo=nodo.next
+        if nodo==None:
+            print( "No existe el mes")
 
     def mostrar(self):
         nodo=self.head

@@ -1,5 +1,3 @@
-from enum import Flag
-import re
 from flask.json import jsonify
 from listaAños import ListaAños
 import os
@@ -235,8 +233,99 @@ class Arbol:
                 self.reporte+=str(cont)+"->"+str(contador)+"\n"
                 self.graficarArbol01(root.right,contador,cont)
                 self.contador=contador
+
+    def modificarTarea(self,carnet,nombre,descripcion,materia,fecha,hora,estado,posicion,año,mes,dia,horaT):
+        if carnet<self.root.carnet:
+            self.modificar_T(carnet,nombre,descripcion,materia,fecha,hora,estado,posicion,año,mes,dia,horaT,self.root.left)
+        elif carnet>self.root.carnet:
+            self.modificar_T(carnet,nombre,descripcion,materia,fecha,hora,estado,posicion,año,mes,dia,horaT,self.root.right)
+        elif carnet==self.root.carnet:
+            self.root.años.modificarT(nombre,descripcion,materia,fecha,hora,estado,posicion,año,mes,dia,horaT)
+            self.existe=True
+
+    def modificar_T(self,carnet,nombre,descripcion,materia,fecha,hora,estado,posicion,año,mes,dia,horaT,root):
+        if root!=None:
+            if carnet==root.carnet:
+                root.años.modificarT(nombre,descripcion,materia,fecha,hora,estado,posicion,año,mes,dia,horaT)
+                self.existe=True
+            elif carnet<root.carnet:
+                self.modificar_T(carnet,nombre,descripcion,materia,fecha,hora,estado,posicion,año,mes,dia,horaT,root.left)
+            elif carnet>root.carnet:
+                self.modificar_T(carnet,nombre,descripcion,materia,fecha,hora,estado,posicion,año,mes,dia,horaT,root.right)      
                 
-                
-                
-        
+    def eliminarT(self,carnet,posicion,año,mes,dia,horaT):
+        if carnet<self.root.carnet:
+            self.eliminar_T(carnet,posicion,año,mes,dia,horaT,self.root.left)
+        elif carnet>self.root.carnet:
+            self.eliminar_T(carnet,posicion,año,mes,dia,horaT,self.root.right)
+        elif carnet==self.root.carnet:
+            self.root.años.eliminarT(carnet,posicion,año,mes,dia,horaT)
+            self.existe=True
+
+    def eliminar_T(self,carnet,posicion,año,mes,dia,horaT,root):
+        if root!=None:
+            if carnet==root.carnet:
+                root.años.eliminarT(posicion,año,mes,dia,horaT)
+                self.existe=True
+            elif carnet<root.carnet:
+                self.modificar_T(carnet,posicion,año,mes,dia,horaT,root.left)
+            elif carnet>root.carnet:
+                self.modificar_T(carnet,posicion,año,mes,dia,horaT,root.right)
+
+    def verTarea(self,carnet,posicion,año,mes,dia,horaT):
+        if carnet<self.root.carnet:
+            mensaje=self.ver_T(carnet,posicion,año,mes,dia,horaT,self.root.left)
+        elif carnet>self.root.carnet:
+            mensaje=self.ver_T(carnet,posicion,año,mes,dia,horaT,self.root.right)
+        elif carnet==self.root.carnet:
+            mensaje=self.root.años.verTarea(carnet,posicion,año,mes,dia,horaT)
+        return mensaje  
+
+    def ver_T(self,carnet,posicion,año,mes,dia,horaT,root):
+        if root!=None:
+            if carnet==root.carnet:
+                mensaje=root.años.verTarea(posicion,año,mes,dia,horaT)
+                return mensaje
+            elif carnet<root.carnet:
+                self.ver_T(carnet,posicion,año,mes,dia,horaT,root.left)
+            elif carnet>root.carnet:
+                self.ver_T(carnet,posicion,año,mes,dia,horaT,root.right)
+
+    def graficaLT(self,carnet,año,mes,dia,hora):
+        if carnet<self.root.carnet:
+            mensaje=self.graficaLT_T(carnet,año,mes,dia,hora,self.root.left)
+        elif carnet>self.root.carnet:
+            mensaje=self.graficaLT_T(carnet,año,mes,dia,hora,self.root.right)
+        elif carnet==self.root.carnet:
+            mensaje=self.root.años.graficaLT(año,mes,dia,hora)
+        return mensaje  
+
+    def graficaLT_T(self,carnet,año,mes,dia,hora,root):
+        if root!=None:
+            if carnet==root.carnet:
+                mensaje=root.años.graficaLT(año,mes,dia,hora)
+                return mensaje
+            elif carnet<root.carnet:
+                self.graficaLT_T(carnet,año,mes,dia,hora,root.left)
+            elif carnet>root.carnet:
+                self.graficaLT_T(carnet,año,mes,dia,hora,root.right)   
+
+    def graficaM(self,carnet,año,mes):
+        if carnet<self.root.carnet:
+            mensaje=self.graficaLM_T(carnet,año,mes,self.root.left)
+        elif carnet>self.root.carnet:
+            mensaje=self.graficaLM_T(carnet,año,mes,self.root.right)
+        elif carnet==self.root.carnet:
+            mensaje=self.root.años.graficaM(año,mes)
+        return mensaje  
+
+    def graficaLM_T(self,carnet,año,mes,root):
+        if root!=None:
+            if carnet==root.carnet:
+                mensaje=root.años.graficaM(año,mes)
+                return mensaje
+            elif carnet<root.carnet:
+                self.graficaLM_T(carnet,año,mes,root.left)
+            elif carnet>root.carnet:
+                self.graficaLM_T(carnet,año,mes,root.right)                  
        

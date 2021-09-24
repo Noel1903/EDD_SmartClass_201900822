@@ -9,6 +9,7 @@ class ListaDatos:
     def __init__(self):
         self.head=None
         self.body=None
+        self.reporte=""
     def insertar(self,dato):
         nuevo=Nodo(dato)
         if self.head==None:
@@ -49,7 +50,36 @@ class ListaDatos:
                     break
                 nodo=nodo.next
         return existe
-        
+
+    def graficarEncabezado(self,tipo):
+        nodo=self.head
+        self.reporte=""
+        rank=""
+        if tipo=="hora":
+            while nodo:
+                self.reporte+="H"+nodo.dato+"[label=\"Hora:"+nodo.dato+"\" group=1]\n"
+                nodo=nodo.next
+
+            nodo=self.head
+            while nodo.next!=None:
+                self.reporte+="H"+nodo.dato+"->H"+nodo.next.dato+"\n"
+                self.reporte+="H"+nodo.next.dato+"->H"+nodo.dato+"\n"
+                nodo=nodo.next
+            return self.reporte
+        else:
+            cont=2
+            while nodo:
+                self.reporte+="D"+nodo.dato+"[label=\"Dia:"+nodo.dato+"\" group="+nodo.dato+"]\n"
+                cont+=1
+                rank+="D"+nodo.dato+"; "
+                nodo=nodo.next
+            nodo=self.head
+            while nodo.next!=None:
+                self.reporte+="D"+nodo.dato+"->D"+nodo.next.dato+"\n"
+                self.reporte+="D"+nodo.next.dato+"->D"+nodo.dato+"\n"
+                nodo=nodo.next
+            return self.reporte+"{rank = same;Mat;"+rank+"}\n"
+
     def devolverNodo(self,dato):
         nodo=self.head
         while nodo:

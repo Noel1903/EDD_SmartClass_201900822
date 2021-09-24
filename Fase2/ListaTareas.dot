@@ -1,0 +1,14 @@
+digraph G{ rankdir=LR node[shape=square] edge[dir=both] 0->1
+0[label="Carnet: 201900822
+Nombre:Tarea de Estadística
+Descripcion:Realizar la tarea del curso de Estadística 1.
+Materia:Estadística 1
+Fecha:14/07/2021
+Hora:10:00
+Estado:Cumplido"]1[label="Carnet: 201900822
+Nombre:Tarea EDD
+Descripcion:Realizar tarea de EDD
+Materia:EDD
+Fecha:14/07/2021
+Hora:10:00
+Estado:Pendiente"]}
