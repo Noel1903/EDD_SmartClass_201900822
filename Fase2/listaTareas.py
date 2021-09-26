@@ -16,11 +16,13 @@ class ListaTareas:
     def __init__(self):
         self.head=None
         self.body=None
+        self.contador=0
         self.datos={}
         self.reporte=""
 
     def insertar(self,carnet,nombre,descripcion,materia,fecha,hora,estado):
         nuevo=Nodo(carnet,nombre,descripcion,materia,fecha,hora,estado)
+        self.contador+=1
         if self.head==None:
             self.head=nuevo
             self.body=nuevo
@@ -31,12 +33,11 @@ class ListaTareas:
             self.body=nuevo
             nuevo.index+=1
 
-    def modificarT(self,carnet,nombre,descripcion,materia,fecha,hora,estado,posicion):
+    def modificarT(self,nombre,descripcion,materia,fecha,hora,estado,posicion):
         nodo=self.head
         if self.head!=None:
             while(nodo):
                 if posicion==nodo.index:
-                    nodo.carnet=carnet
                     nodo.nombre=nombre
                     nodo.descripcion=descripcion
                     nodo.materia=materia
@@ -85,6 +86,8 @@ class ListaTareas:
                     return self.datos
                 nodo=nodo.next
 
+    def tamaño(self):
+        return self.contador
 
     def graficarDatos(self):
         nodo=self.head
@@ -97,10 +100,10 @@ class ListaTareas:
             nodo=nodo.next
 
         reporte="digraph G{ rankdir=LR node[shape=square] edge[dir=both] "+self.reporte+"}"
-        documento=open("ListaTareas.dot","w",encoding="utf-8")
+        documento=open("C:/Users/osmar/Desktop/Reportes_F2/ListaTareas.dot","w",encoding="utf-8")
         documento.write(reporte)
         documento.close()
-        os.system("dot -Tpng ListaTareas.dot -o ListaTareas.png")
+        os.system("dot -Tpng C:/Users/osmar/Desktop/Reportes_F2/ListaTareas.dot -o C:/Users/osmar/Desktop/Reportes_F2/ListaTareas.png")
 
 
     def mostrar(self):

@@ -153,7 +153,7 @@ class Matriz:
             repo=""
             hora=dia.puntero
             while hora!=None:
-                self.reporte+=dia.dato+hora.hora+"[label=\"Tareas\" group="+dia.dato+"]\n"
+                self.reporte+=dia.dato+hora.hora+"[label=\""+str(hora.datos.tamaño())+"\" group="+dia.dato+"]\n"
                 if hora.hora==dia.puntero.hora:
                     self.reporte+="D"+dia.dato+"->"+dia.dato+hora.hora+"\n"
                     repo+=dia.dato+hora.hora+";H"+hora.hora+";"
@@ -184,10 +184,10 @@ class Matriz:
 
 
         texto="digraph G{\n"+self.reporte+" }"
-        documento=open("MatrizTareas.dot","w",encoding="utf-8")
+        documento=open("C:/Users/osmar/Desktop/Reportes_F2/MatrizTareas.dot","w",encoding="utf-8")
         documento.write(texto)
         documento.close()
-        os.system("dot -Tpng MatrizTareas.dot -o MatrizTareas.png")
+        os.system("dot -Tpng C:/Users/osmar/Desktop/Reportes_F2/MatrizTareas.dot -o C:/Users/osmar/Desktop/Reportes_F2/MatrizTareas.png")
 
 
     def mostrarDia(self):

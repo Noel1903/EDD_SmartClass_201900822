@@ -1,10 +1,12 @@
 from flask import Flask,jsonify,Request
+import os
 from flask.globals import request
 from PLY.main import Analizador
 from ArbolAVL import Arbol
 analisis=Analizador()
 datos=Arbol()
 app=Flask(__name__)
+cont=1
 @app.route('/carga',methods=['POST'])
 def cargaMasiva():
     tipo=request.json["tipo"]
@@ -30,6 +32,10 @@ def cargaMasiva():
 
 @app.route('/reporte',methods=['GET'])
 def Reportes():
+    global cont
+    if cont==1:
+        os.mkdir('C:/Users/osmar/Desktop/Reportes_F2')
+        cont+=1
     data=request.get_json()
     tipo=data["tipo"]
     if tipo==0:
@@ -158,4 +164,5 @@ def recordatorio():
         return "Eliminar Tarea"
 
 if __name__=="__main__":
+    
     app.run(port=3000,debug=True,host='0.0.0.0')

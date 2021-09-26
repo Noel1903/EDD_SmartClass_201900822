@@ -51,4 +51,13 @@ arbol.mostrar()"""
 dicc['Edad']=21
 dicc['Nombre']="Noel"
 print(dicc)"""
+from ArbolBCursos import ArbolB
+btree=ArbolB()
+
+btree.insertar(101,"EDD",5,"Hola","Obligatorio")
+btree.insertar(301,"IPC",4,"Hola","Obligatorio")
+btree.insertar(400,"Lenguajes",8,"Hola","Obligatorio")
+btree.insertar(205,"Matematica",6,"Hola","Obligatorio")
+btree.insertar(95,"Orga",1,"Hola","Obligatorio")
+btree.mostrar()
 

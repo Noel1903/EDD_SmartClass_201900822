@@ -210,10 +210,10 @@ class Arbol:
         self.graficarArbol01(self.root,contador,cont)
         #self.reporte+=str(self.contador)+"[label=\""+self.root.carnet+"\n"+self.root.dpi+"\n"+self.root.nombre+"\n"+self.root.carrera+"\n"+self.root.correo+"\n"+self.root.password+"\n"+self.root.creditos+"\n"+self.root.edad+"\n\"]"
         documento="digraph G{node[shape=\"rectangle\"] "+self.reporte+" }" 
-        reporte=open("ReporteEstudiantes.dot","w",encoding="utf-8")
+        reporte=open("C:/Users/osmar/Desktop/Reportes_F2/ReporteEstudiantes.dot","w",encoding="utf-8")
         reporte.write(documento)    
         reporte.close()
-        os.system("dot -Tpng ReporteEstudiantes.dot -o ReporteEstudiantes.png")
+        os.system("dot -Tpng C:/Users/osmar/Desktop/Reportes_F2/ReporteEstudiantes.dot -o C:/Users/osmar/Desktop/Reportes_F2/ReporteEstudiantes.png")
 
     def graficarArbol01(self,root,contador,cont):
         if root!= None:
@@ -268,9 +268,9 @@ class Arbol:
                 root.años.eliminarT(posicion,año,mes,dia,horaT)
                 self.existe=True
             elif carnet<root.carnet:
-                self.modificar_T(carnet,posicion,año,mes,dia,horaT,root.left)
+                self.eliminar_T(carnet,posicion,año,mes,dia,horaT,root.left)
             elif carnet>root.carnet:
-                self.modificar_T(carnet,posicion,año,mes,dia,horaT,root.right)
+                self.eliminar_T(carnet,posicion,año,mes,dia,horaT,root.right)
 
     def verTarea(self,carnet,posicion,año,mes,dia,horaT):
         if carnet<self.root.carnet:
