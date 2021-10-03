@@ -1,8 +1,9 @@
 from listaMeses import ListaMeses
+from listaSemetres import ListaSemestres
 class NodoA:
     def __init__(self,año):
         self.año=año
-        self.semestre=None
+        self.semestre=ListaSemestres()
         self.meses=ListaMeses()
         self.next=None
 
@@ -16,18 +17,21 @@ class ListaAños:
         if self.head==None:
             self.head=nuevo
             self.body=nuevo
-            nuevo.meses.insertar(mes,dia,hora,carnet,nombre,descripcion,materia,fecha,horaT,estado)
+            if mes!="":
+                nuevo.meses.insertar(mes,dia,hora,carnet,nombre,descripcion,materia,fecha,horaT,estado)
         else:
             nodo=self.head
             while nodo!=None:
                 if nodo.año==año:
-                    nodo.meses.insertar(mes,dia,hora,carnet,nombre,descripcion,materia,fecha,horaT,estado)
+                    if mes!="":
+                        nodo.meses.insertar(mes,dia,hora,carnet,nombre,descripcion,materia,fecha,horaT,estado)
                     return
                 nodo=nodo.next
             if nodo==None:
                 self.body.next=nuevo
                 self.body=nuevo
-                nuevo.meses.insertar(mes,dia,hora,carnet,nombre,descripcion,materia,fecha,horaT,estado)
+                if mes!="":
+                    nuevo.meses.insertar(mes,dia,hora,carnet,nombre,descripcion,materia,fecha,horaT,estado)
 
     def modificarT(self,nombre,descripcion,materia,fecha,hora,estado,posicion,año,mes,dia,horaT):
         nodo=self.head
@@ -79,6 +83,15 @@ class ListaAños:
             nodo=nodo.next
         if nodo==None:
             print( "No existe el año")
+    
+    def graficaCursos(self,año,semestre):
+        nodo=self.head
+        while nodo:
+            if nodo.año==año:
+                nodo.semestre.graficaCursos(semestre)
+                return  
+            nodo=nodo.next
+
 
     def mostrar(self):
         nodo=self.head
@@ -89,3 +102,15 @@ class ListaAños:
                 print("Año: "+str(nodo.año))
                 nodo.meses.mostrar()
                 nodo=nodo.next
+
+    def cursos(self,año,datos):
+        nodo=self.head
+        while nodo:
+            if año==nodo.año:
+                for i in datos:
+                    nodo.semestre.insertar(i["Semestre"],i["Cursos"])
+                return
+            nodo=nodo.next
+        if nodo==None:
+            self.insertar(año,"","","","","","","","","","")
+            self.cursos(año,datos)

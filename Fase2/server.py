@@ -3,6 +3,8 @@ import os
 from flask.globals import request
 from PLY.main import Analizador
 from ArbolAVL import Arbol
+from ArbolBCursos import ArbolB
+cursosP=ArbolB()
 analisis=Analizador()
 datos=Arbol()
 app=Flask(__name__)
@@ -26,8 +28,9 @@ def cargaMasiva():
             dia=fecha[0]
             hora=data["Hora"].split(":")
             datos.insertarAño(data["Carnet"],año,mes,dia,hora[0],data["Nombre"],data["Descripcion"],data["Materia"],data["Fecha"],data["Hora"],data["Estado"])
-        #datos.mostrarA()       
-    return tipo
+        #datos.mostrarA()
+
+    return "Carga masiva"
 
 
 @app.route('/reporte',methods=['GET'])
@@ -68,12 +71,37 @@ def Reportes():
         datos.graficaLT(carnet,año,Mes,Dia,str(hora))
         return "Lista tareas"
     elif tipo==3:
+        cursosP.graficar()
         return "Arbol general de cursos"
     elif tipo==4:
         carnet=data["carnet"]
         año=data["año"]
         semestre=data["semestre"]
+        datos.graficaCursos(carnet,año,semestre)
         return "Arbol B de Cursos"
+
+@app.route('/cursosPensum',methods=['POST'])
+def pensum():
+    data=request.get_json()
+    cursos=data["Cursos"]
+    for i in cursos:
+        codigo=i["Codigo"]
+        nombre=i["Nombre"]
+        creditos=i["Creditos"]
+        prerequisitos=i["Prerequisitos"]
+        obligatorio=i["Obligatorio"]
+        cursosP.insertarDatos(codigo,nombre,creditos,prerequisitos,obligatorio)
+    cursosP.Preorder()    
+    return "Carga de cursos de Pensum"
+
+@app.route('/cursosEstudiante',methods=['POST'])
+def cursosE():
+    data=request.get_json()
+    datos.imprimir()
+    cursoE=data["Estudiantes"]
+    for i in cursoE:
+        datos.insertarCursos(i["Carnet"],i["Años"])
+    return "Carga de cursos de Estudiantes"
 
 @app.route('/estudiante',methods=['POST','PUT','DELETE','GET'])
 def estudiante():
@@ -106,6 +134,7 @@ def estudiante():
         return mensaje
     else:
         carnet=data["carnet"]
+        datos.eliminar(carnet)
         return "Eliminar usuario"
 
 @app.route('/recordatorios',methods=['POST','PUT','DELETE','GET'])

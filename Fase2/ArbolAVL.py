@@ -39,29 +39,34 @@ class Arbol:
         
     def insertarHoja(self,carnet,dpi,nombre,carrera,correo,password,creditos,edad,root):
         if root==None:
+            #Aqui se crea un nuevo nodo Hoja que va ser insertado en uno de los lados de os punteros o la raiz del arbol
             nuevo=Hoja(carnet,dpi,nombre,carrera,correo,password,creditos,edad)
-            #anios=ListaAños()
-            #nuevo.años=anios
-            #anios.insertar(año)
             return nuevo
         elif carnet>root.carnet:
+            #Si el dato es mayor a el valor actual va ir recursivo hasta encontrar un puntero nulo para insertar el nodo
            root.right=self.insertarHoja(carnet,dpi,nombre,carrera,correo,password,creditos,edad,root.right)
+           #Aqui se comprueba si el arbol esta balanceado
            if self.height(root.right)-self.height(root.left)==2:
                 if carnet<root.right.carnet:
+                    #Aqui se verificar si el dato es menor al nodo de la derecha se va hacer una rotacion doble a la derecha
                    root=self.Doble_rotD(root)
                 else:
+                    #Si no es menor al nodo derecho entonces solo sera una rotacion simple a las izquierda
                     root=self.rotacionI(root)
         elif carnet<root.carnet:
+            #Si el dato es menor a el valor actual va ir recursivo hasta encontrar un puntero nulo para insertar el nodo
             root.left=self.insertarHoja(carnet,dpi,nombre,carrera,correo,password,creditos,edad,root.left)
+            #Aqui se comprueba si el arbol esta balanceado
             if self.height(root.left)-self.height(root.right)==2:
                 if carnet>root.left.carnet:
+                    #Aqui se verificar si el dato es mayor al nodo de la izquierda se va hacer una rotacion doble a la izquierda
                    root=self.Doble_rotI(root)
                 else:
+                    #Si no es menor al nodo izquierdo entonces solo sera una rotacion simple a las derecha
                     root=self.rotacionD(root)
-        #else:
-            #root.años.insertar(año)
+        #Aqui se le asigna la altura del nodo del arbol
         root.height=self.max(self.height(root.left),self.height(root.right))+1
-
+        #se retorna el valor de la raiz con sus punteros ya llenos o asignados y la altura asignada
         return root
     
     def modificar(self,carnet,dpi,nombre,carrera,correo,password,creditos,edad):
@@ -329,3 +334,91 @@ class Arbol:
             elif carnet>root.carnet:
                 self.graficaLM_T(carnet,año,mes,root.right)                  
        
+    def eliminar(self,carnet):
+        self.root=self.eliminar01(carnet,self.root)
+
+    def eliminar01(self,carnet,root):
+        if root!=None: 
+            if root.carnet==carnet:
+                if root.left==None and root.right==None:
+                    return None
+                elif root.left==None:
+                    root=root.right
+                elif root.right==None:
+                    root=root.left
+                else:
+                    temp=self.eliminarN(root.left,root)
+                    root.carnet=temp.carnet
+                    root.dpi=temp.dpi
+                    root.nombre=temp.carnet
+                    root.edad=temp.edad
+                    root.correo=temp.correo
+                    root.password=temp.password
+                    root.creditos=temp.creditos
+                    root.carrera=temp.carrera
+            elif carnet>root.carnet:
+                root.right=self.eliminar01(carnet,root.right)
+            else:
+                root.left=self.eliminar01(carnet,root.left)
+            root=self.balanceo(root)
+            root.height=self.max(self.height(root.left),self.height(root.right))+1
+            return root
+    
+    def balanceo(self,root):
+        if self.height(root.left)-self.height(root.right)==2:
+            if self.height(root.left.left)<self.height(root.left.right):
+                root=self.Doble_rotD(root)
+            else:
+                root=self.rotacionD(root)
+        if self.height(root.right)-self.height(root.left)==2:
+            if self.height(root.right.right)<self.height(root.right.left):
+                root=self.Doble_rotI(root)
+            else:
+                root=self.rotacionI(root)
+        return root
+                
+    def eliminarN(self,root,rootA):
+        if root.left==None and root.right==None:
+            temp=root
+            rootA.left=None
+            return temp
+        elif root.left==None:
+            return root.right
+        elif root.right==None:
+            rootA.right=root.left
+            root.left=None
+            return root
+        else:
+            return self.eliminarN(root.right,root)
+
+    def insertarCursos(self,carnet,datos):
+        self.insertarCursos01(carnet,datos,self.root)
+    
+    def insertarCursos01(self,carnet,datos,root):
+        if carnet==root.carnet:
+            for i in datos:
+                root.años.cursos(i["Año"],i["Semestres"])
+
+            #print(str(carnet)+":"+str(año))
+        elif carnet<root.carnet:
+            self.insertarCursos01(carnet,datos,root.left)
+        if carnet>root.carnet:
+            self.insertarCursos01(carnet,datos,root.right)
+
+    def graficaCursos(self,carnet,año,semestre):
+        if carnet<self.root.carnet:
+            self.graficaCurses(carnet,año,semestre,self.root.left)
+        elif carnet>self.root.carnet:
+            self.graficaCurses(carnet,año,semestre,self.root.right)
+        elif carnet==self.root.carnet:
+            self.root.años.graficaCursos(año,semestre)
+        
+
+    def graficaCurses(self,carnet,año,semestre,root):
+        if root!=None:
+            if carnet==root.carnet:
+                root.años.graficaCursos(año,semestre)
+            elif carnet<root.carnet:
+                self.graficaCurses(carnet,año,semestre,root.left)
+            elif carnet>root.carnet:
+                self.graficaCurses(carnet,año,semestre,root.right)

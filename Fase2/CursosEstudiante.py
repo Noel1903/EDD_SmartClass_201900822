@@ -1,5 +1,4 @@
 import os
-#Este es el nodo doble donde se van a almacenar los datos de los cursos
 class NodoD:
     def __init__(self,codigo,nombre,creditos,prerrequisitos,obligatorio):
         self.codigo=codigo
@@ -9,19 +8,18 @@ class NodoD:
         self.obligatorio=obligatorio
         self.next=None
         self.previous=None
-#Este es el nodo de punteros que van a estar conectado a los nodos de los datos
+
 class NodoP:
     def __init__(self,puntero):
         self.puntero=puntero
         self.next=None
         self.previous=0
-#Clase de la lista doble de los datos de los cursos
+
 class ListaD:
     def __init__(self):
         self.head=None
         self.body=None
         self.contador=0
-        self.graficar=""
 
     def vacio(self):
         if self.head==None:
@@ -54,7 +52,7 @@ class ListaD:
             posicion-=1
             nodo=nodo.next
         return nodo
-#Clase del la lista de nodos punteros donde van a estar conectados con la lista de datos
+
 class ListaP:
     def __init__(self):
         self.head=None
@@ -92,7 +90,7 @@ class ListaP:
             posicion-=1
             nodo=nodo.next
         return nodo
-#Clase donde se inicializan los datos del arbol B de las listas enlazadas  y metodos getters y setters
+
 class Pagina:
     def __init__(self):
         self.contador=0
@@ -104,11 +102,23 @@ class Pagina:
                 self.datos.insertarN(None,"",None,"",None)
             self.punteros.insertarP(None)
         
+    def paginaLlena(self):
+        if self.contador==self.maximo-1:
+            return True
+        else:
+            return False
+    
     def getContador(self):
         return self.contador
     
     def setContador(self,contador):
         self.contador=contador
+
+    def paginaCasiLlena(self):
+        if self.contador==self.maximo/2:
+            return True
+        else:
+            return False
 
     def setCodigo(self,posicion,codigo):
         self.datos.insertarDato(codigo,posicion)
@@ -148,10 +158,9 @@ class Pagina:
 
     def getCodigo(self,posicion):
         return self.datos.devolverDato(posicion).codigo
-#Clase donde se crea el Arbol B de los Cursos
+
 class ArbolB:
     def __init__(self):
-        #Dato raiz
         self.raiz=None
         self.aux1=False
         self.aux2=None
@@ -160,14 +169,12 @@ class ArbolB:
         self.comparador=False
         self.grafica=""
         self.nodos=0
-        #Datos que se van a recibir
         self.Codigo=""
         self.Nombre=""
         self.Creditos=0
         self.Prerrequisitos=""
         self.Obligatorio=""
 
-    #Función donde se comprueba si esta el arbol vacio
     def Vacio(self,raiz):
         if raiz==None or raiz.contador==0:
             return True
@@ -177,9 +184,7 @@ class ArbolB:
     def insertarDatos(self,codigo,nombre,creditos,prerrequisitos,obligatorio):
         self.insertarDatos01(self.raiz,codigo,nombre,creditos,prerrequisitos,obligatorio)
 
-    #Metodo recursivo donde se van a ir insertando los datos
     def insertarDatos01(self,raiz,codigo,nombre,creditos,prerrequisitos,obligatorio):
-        #Metodo donde se va comprobar si el arbol se separa o solo se va ir ingresando los datos
         self.Empujar(raiz,codigo,nombre,creditos,prerrequisitos,obligatorio)
         if self.subeA:
             self.raiz=Pagina()
@@ -195,7 +200,6 @@ class ArbolB:
     def Empujar(self,raiz,codigo,nombre,creditos,prerrequisitos,obligatorio):
         posicion=0
         self.estado=False
-        #Aqui se verifica que la raiz esta vacia entonces solo se asignan los valores globales o si solo se va ir llenando en la raiz donde cae
         if self.Vacio(raiz) and self.comparador==False:
             self.subeA=True
             self.Codigo=codigo
@@ -205,26 +209,22 @@ class ArbolB:
             self.Obligatorio=obligatorio
             self.aux2=None
         else:
-            #Aqui se va buscar la posicion donde se va ir insertando los datos para ver en que puntero debe caer
             posicion=self.buscarN(codigo,raiz)
             if self.comparador==False:
                 if self.estado:
                     self.subeA=False
                 else:
-                    #se vuelve recursivo para ver si se debe insertar en la misma raiz o en una diferente
                     self.Empujar(raiz.getPuntero(posicion),codigo,nombre,creditos,prerrequisitos,obligatorio)
                     if self.subeA:
                         if raiz.getContador()<4:
                             self.subeA=False
-                            #Se junta en la hoja para ir formando el nodo del arbol B
                             self.meterHoja(raiz,posicion,self.Codigo,self.Nombre,self.Creditos,self.Prerrequisitos,self.Obligatorio)
                         else:
-                            #Aqui se observa que el nivel maximo se sobrepaso y se va hacer la division del nodo del arbol B
                             self.subeA=True
                             self.dividir(raiz,posicion,self.Codigo,self.Nombre,self.Creditos,self.Prerrequisitos,self.Obligatorio)
             else:
                 self.comparador=False
-    #Esta funcion es donde va a comprobar en que posicion se va a ir insertando los datos pero solo va devolver el numero de la posicion
+
     def buscarN(self,codigo,raiz):
         contadorA=0
         if self.compareTo(raiz.getCodigo(0),codigo)<0:
@@ -252,7 +252,7 @@ class ArbolB:
             return -1
         else:
             return 1
-    #Metodo donde se va recibir los datos que van a ir insertando en el nodo
+    
     def meterHoja(self,raiz,posicion,codigo,nombre,creditos,prerrequisitos,obligatorio):
         contA=raiz.getContador()
         while contA!=posicion:
@@ -272,7 +272,7 @@ class ArbolB:
         raiz.setObligatorio(posicion,obligatorio)
         raiz.setPuntero(posicion+1,self.aux2)
         raiz.setContador(raiz.getContador()+1)
-    #Metodo para hacer el rompimiento del nodo del arbol B en 3 partes, creando punteros y asignando los datos ya ingresados posicionandolos en las hojas que se van a separar
+
     def dividir(self,raiz,posicion,codigo,nombre,creditos,prerrequisitos,obligatorio):
         posicion2=0
         posicionM=0
@@ -322,7 +322,7 @@ class ArbolB:
             raiz.setPrerrequisitos(2,"")
             raiz.setObligatorio(2,"")
             raiz.setPuntero(3,None)
-    #Aqui se va imprimir en preorden del arbol B
+
     def Preorder(self):
         self.Preorder01(self.raiz)
 
@@ -337,17 +337,18 @@ class ArbolB:
             self.Preorder01(raiz.getPuntero(2))
             self.Preorder01(raiz.getPuntero(3))
             self.Preorder01(raiz.getPuntero(4))
-    #Metodos para graficacion del arbol B
+
+    
     def graficar(self):
         self.grafica=""
         self.graficar01(self.raiz)
         self.graficar02(self.raiz)
 
         grafica="digraph ArbolBCursos{\n rankdir=TB\n node [shape=record]\n"+self.grafica+"\n}"
-        documento=open("C:/Users/osmar/Desktop/Reportes_F2/ArbolCursos.dot","w",encoding="utf-8")
+        documento=open("C:/Users/osmar/Desktop/Reportes_F2/CursosEstudiante.dot","w",encoding="utf-8")
         documento.write(grafica)
         documento.close()
-        os.system("dot -Tpng C:/Users/osmar/Desktop/Reportes_F2/ArbolCursos.dot -o C:/Users/osmar/Desktop/Reportes_F2/ArbolCursos.png")
+        os.system("dot -Tpng C:/Users/osmar/Desktop/Reportes_F2/CursosEstudiante.dot -o C:/Users/osmar/Desktop/Reportes_F2/CursosEstudiante.png")
 
 
     def graficar01(self,raiz):
@@ -399,6 +400,3 @@ class ArbolB:
             self.graficar02(raiz.getPuntero(2))
             self.graficar02(raiz.getPuntero(3))
             self.graficar02(raiz.getPuntero(4))
-
-
-

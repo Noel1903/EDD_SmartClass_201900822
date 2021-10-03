@@ -51,7 +51,7 @@ arbol.mostrar()"""
 dicc['Edad']=21
 dicc['Nombre']="Noel"
 print(dicc)"""
-from ArbolBCursos import ArbolB
+"""from ArbolBCursos import ArbolB
 btree=ArbolB()
 
 btree.insertar(101,"EDD",5,"Hola","Obligatorio")
@@ -59,5 +59,30 @@ btree.insertar(301,"IPC",4,"Hola","Obligatorio")
 btree.insertar(400,"Lenguajes",8,"Hola","Obligatorio")
 btree.insertar(205,"Matematica",6,"Hola","Obligatorio")
 btree.insertar(95,"Orga",1,"Hola","Obligatorio")
-btree.mostrar()
+btree.mostrar()"""
+"""for i in range(5):
+    print (i)"""
 
+"""def compareTo(a,b):
+        if a==b:
+            return 0
+        elif b<a:
+            return -1
+        else:
+            return 1
+
+print(compareTo("b","b"))"""
+from ArbolBCursos import ArbolB
+
+nuevo=ArbolB()
+
+nuevo.insertarDatos(301,"EDD",10,"201,406,303","Si")
+nuevo.insertarDatos(201,"Apli1",10,"201,406,303","Si")
+nuevo.insertarDatos(100,"EDD",10,"201,406,303","Si")
+nuevo.insertarDatos(80,"EDD",10,"201,406,303","Si")
+nuevo.insertarDatos(550,"EDD",10,"201,406,303","Si")
+nuevo.insertarDatos(1023,"EDD",10,"201,406,303","Si")
+nuevo.insertarDatos(100,"EDD",10,"201,406,303","Si")
+nuevo.insertarDatos(98,"EDD",10,"201,406,303","Si")
+nuevo.insertarDatos(25,"EDD",10,"201,406,303","Si")
+nuevo.Preorder()
